@@ -24,12 +24,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<Post> profiles;
+    ArrayList<String> names;
     String image_link, full_text;
 
-    public MyAdapter(Context c , ArrayList<Post> p)
+    public MyAdapter(Context c , ArrayList<Post> p, ArrayList<String> names)
     {
         context = c;
         profiles = p;
+        this.names = names;
     }
 
     @NonNull
@@ -44,7 +46,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         image_link = profiles.get(position).getImage();
         full_text = profiles.get(position).getText();
-        String t = "";
+        String t;
         try{
             t = (profiles.get(position).getText()).substring(0,50);
         }catch(Exception e){
@@ -53,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.text.setText(t);
         holder.likes.setText(profiles.get(position).getRating() + "");
         holder.author.setText(profiles.get(position).getAuthor());
-        holder.comments.setText(profiles.get(position).getComments());
+        holder.comments.setText("");
         Picasso.get().load(profiles.get(position).getImage()).into(holder.image);
         holder.click(position);
     }
@@ -80,7 +82,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             comments = (TextView) itemView.findViewById(R.id.comments);
 
         }
-        public void click(int position){
+        public void click(final int position){
             final int pos = position;
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,8 +93,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     intent.putExtra("text", profiles.get(pos).getText());
                     intent.putExtra("likes", profiles.get(pos).getRating());
                     intent.putExtra("author", profiles.get(pos).getAuthor());
-                    intent.putExtra("comments", profiles.get(pos).getComments());
+                    //intent.putExtra("comments", profiles.get(pos).getComments());
                     intent.putExtra("image link", profiles.get(pos).getImage());
+                    intent.putExtra("database child", names.get(position));
 
                     context.startActivity(intent);
                 }

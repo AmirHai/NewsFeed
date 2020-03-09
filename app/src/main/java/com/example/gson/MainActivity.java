@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference reference;
     RecyclerView recyclerView;
     ArrayList<Post> list;
+    ArrayList<String> names;
     MyAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list = new ArrayList<Post>();
+                names = new ArrayList<>();
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
                 {
                     Post p = dataSnapshot1.getValue(Post.class);
+                    String name = dataSnapshot1.getKey();
+                    names.add(name);
                     list.add(p);
                 }
                 Collections.reverse(list);
-                adapter = new MyAdapter(MainActivity.this,list);
+                adapter = new MyAdapter(MainActivity.this,list, names);
                 recyclerView.setAdapter(adapter);
             }
 
