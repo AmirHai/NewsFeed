@@ -3,16 +3,17 @@ package com.example.gson;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Post {
     private String author;
-    private ArrayList<Object> comments;
+    private HashMap<String, String> comments;
     private String image;
     private double rating;
     private String text;
     private String title;
 
-    public Post(String author, ArrayList<Object> comments, String image, double rating, String text, String title){
+    public Post(String author, HashMap<String, String> comments, String image, double rating, String text, String title){
         this.author = author;
         this.comments = comments;
         this.image = image;
@@ -29,11 +30,11 @@ public class Post {
         this.author = author;
     }
 
-    public ArrayList<Object> getComments() {
+    public HashMap<String, String> getComments() {
         return comments;
     }
 
-    public void setComments(ArrayList<Object> comments) {
+    public void setComments(HashMap<String, String> comments) {
         this.comments = comments;
     }
 

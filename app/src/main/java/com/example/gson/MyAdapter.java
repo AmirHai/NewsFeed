@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -93,7 +94,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     intent.putExtra("text", profiles.get(pos).getText());
                     intent.putExtra("likes", profiles.get(pos).getRating());
                     intent.putExtra("author", profiles.get(pos).getAuthor());
-                    //intent.putExtra("comments", profiles.get(pos).getComments());
+
+                    ArrayList<String> com = new ArrayList<>();
+                    HashMap<String, String> h = profiles.get(pos).getComments();
+                    com.addAll(h.values());
+                    intent.putExtra("comments", com);
+
                     intent.putExtra("image link", profiles.get(pos).getImage());
                     intent.putExtra("database child", names.get(position));
 

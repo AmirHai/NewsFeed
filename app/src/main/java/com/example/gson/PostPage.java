@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,8 +32,10 @@ public class PostPage extends AppCompatActivity {
     EditText com;
     ImageView image;
     DatabaseReference reference;
-    String text_comments;
-    HashMap<Integer, String> opinion = new HashMap<>();
+    String text_comments = "";
+    ArrayList<String> opinion = new ArrayList<>();
+    Button send;
+    String message = "";
     int i=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class PostPage extends AppCompatActivity {
         String text_title = intent.getStringExtra("title");
         String image_link = intent.getStringExtra("image link");
         String full_text = intent.getStringExtra("text");
+        opinion = intent.getStringArrayListExtra("comments");
+
         double text_likes = intent.getDoubleExtra("likes", 0.0);
         final String text_author = intent.getStringExtra("author");
         String path = intent.getStringExtra("database child");
@@ -53,39 +58,48 @@ public class PostPage extends AppCompatActivity {
         comments = (TextView) findViewById(R.id.comments);
         image = (ImageView) findViewById(R.id.image);
         com = (EditText) findViewById(R.id.com);
+        send = (Button) findViewById(R.id.send_comment);
         reference = FirebaseDatabase.getInstance().getReference().child("News").child(path).child("comments");
+
+        Button close = (Button) findViewById(R.id.close);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 text_comments = "";
-                i=0;
+
                 for(DataSnapshot ds :dataSnapshot.getChildren()){
                     String s = (ds.getValue()).toString();
 
-                    Log.d("Logs", s);
-
-                    opinion.put(i, s);
-                    ++i;
                     text_comments = text_comments + s + "\n";
                 }
-
-
                 comments.setText(text_comments);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-        Button close = (Button) findViewById(R.id.close);
 
         title.setText(text_title);
         Picasso.get().load(image_link).into(image);
         text.setText(full_text);
         likes.setText(text_likes + "");
         author.setText(text_author);
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!message.equals("")) {
+                    reference.child(opinion.size() + "").setValue(message);
+                    com.setText("");
+                    Toast.makeText(getApplicationContext(), "Comment added", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Comment can't be empty", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,12 +116,11 @@ public class PostPage extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //push в комментарии
+                message = s.toString();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
     }
