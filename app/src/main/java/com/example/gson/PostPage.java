@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,12 +28,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class PostPage extends AppCompatActivity {
+public class PostPage extends AppCompatActivity{
     TextView title,text, likes, author, comments;
     EditText com;
     ImageView image;
     DatabaseReference reference;
     String text_comments = "";
+    String text_title, full_text, image_link, path;
+    String txt_author;
+    double text_likes;
+
     ArrayList<String> opinion = new ArrayList<>();
     Button send;
     String message = "";
@@ -42,14 +47,15 @@ public class PostPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_page);
         Intent intent = getIntent();
-        String text_title = intent.getStringExtra("title");
-        String image_link = intent.getStringExtra("image link");
-        String full_text = intent.getStringExtra("text");
+        text_title = intent.getStringExtra("title");
+        image_link = intent.getStringExtra("image link");
+        full_text = intent.getStringExtra("text");
         opinion = intent.getStringArrayListExtra("comments");
 
-        double text_likes = intent.getDoubleExtra("likes", 0.0);
+        text_likes = intent.getDoubleExtra("likes", 0.0);
         final String text_author = intent.getStringExtra("author");
-        String path = intent.getStringExtra("database child");
+        txt_author = text_author;
+        path = intent.getStringExtra("database child");
 
         title = (TextView) findViewById(R.id.title);
         text = (TextView) findViewById(R.id.text);
@@ -123,5 +129,22 @@ public class PostPage extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+
+        View.OnClickListener OpenPic = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostPage.this, PictureActivity.class);
+                intent.putExtra("title", text_title);
+                intent.putExtra("text", full_text);
+                intent.putExtra("likes", text_likes);
+                intent.putExtra("author", txt_author);
+                intent.putExtra("comments", opinion);
+                intent.putExtra("image link", image_link);
+                intent.putExtra("database child", path);
+
+                startActivity(intent);
+            }
+        };
+        image.setOnClickListener(OpenPic);
     }
 }
