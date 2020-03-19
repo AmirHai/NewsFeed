@@ -10,14 +10,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/dravable_one"
+        android:background="@drawable/fone_in_view"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:background="@drawable/action_bar"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/close"
+                android:layout_width="45dp"
+                android:layout_height="32dp"
+                android:background="@drawable/back_button_new"
+                android:textAllCaps="false"
+                android:textColor="@color/White">
+
+            </Button>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Запись на стене"
+                android:textColor="@color/Black"
+                android:textSize="30dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,13 +66,12 @@
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:background="@drawable/foto"
                 android:layout_height="250dp" />
 
             <TextView
                 android:id="@+id/text"
                 android:layout_width="match_parent"
-                android:layout_height="15dp" />
+                android:layout_height="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +82,7 @@
                     android:id="@+id/button"
                     android:layout_width="60dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/serdce" />
+                    android:background="@drawable/serdco" />
 
                 <TextView
                     android:id="@+id/likes"
@@ -95,17 +114,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Send"
-                android:textColor="@color/Black"
+                android:textColor="@color/White"
+                android:background="@drawable/send_butt"
                 android:textAllCaps="false">
-
-            </Button>
-
-            <Button
-                android:id="@+id/close"
-                android:text="Close"
-                android:textAllCaps="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
             </Button>
 
