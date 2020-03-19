@@ -9,64 +9,81 @@
     app:cardCornerRadius="10dp"
     app:contentPadding="5dp"
     app:cardUseCompatPadding="true">
-    <RelativeLayout
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:background="@drawable/pole"
+        android:orientation="vertical"
+        android:padding="3dp">
 
         <TextView
+            android:id="@+id/author"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center|left"
+            android:text="avtor"
+            android:textColor="@color/Black"
+            android:textSize="20dp" />
+        <TextView
             android:id="@+id/title"
-            android:background="@color/colorPrimaryDark"
-            android:textAppearance="@android:style/TextAppearance.Large">
-        </TextView>
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center|left"
+            android:text="title"
+            android:textColor="@color/Black"
+            android:textSize="20dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
             android:id="@+id/image"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_below="@+id/title">
-        </ImageView>
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/foto"
+            />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/text"
-            android:background="@color/colorPrimary"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:layout_below="@+id/image">
-        </TextView>
-        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/likes"
-            android:background="@color/colorAccent"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:layout_below="@+id/text">
-        </TextView>
+            android:layout_height="15dp"
+            android:text="" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/author"
-            android:background="@color/color1"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:layout_below="@+id/likes">
-        </TextView>
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/comments"
-            android:background="@color/color2"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:layout_below="@+id/author">
-        </TextView>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="50dp"
+                android:layout_height="42.5dp"
+                android:background="@drawable/serdce"
+                android:text="" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/likes"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/Black"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/comment"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/comments"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/Black"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
