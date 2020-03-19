@@ -1,95 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PostPage">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dravable_one"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/poletwo"
             android:orientation="vertical">
+
             <TextView
+                android:id="@+id/author"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center|left"
+                android:text="автор"
+                android:textColor="@color/Black"
+                android:textSize="20dp" />
+            <TextView
                 android:id="@+id/title"
-                android:background="@color/colorPrimaryDark"
-                android:textAppearance="@android:style/TextAppearance.Large">
-            </TextView>
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center|left"
+                android:text="автор"
+                android:textColor="@color/Black"
+                android:textSize="20dp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
                 android:id="@+id/image"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_launcher_foreground"
-                >
-            </ImageView>
+                android:layout_width="match_parent"
+                android:background="@drawable/foto"
+                android:layout_height="250dp" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/text"
-                android:background="@color/colorPrimary"
-                android:textAppearance="@android:style/TextAppearance.Large">
-            </TextView>
-            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/likes"
-                android:background="@color/colorAccent"
-                android:textAppearance="@android:style/TextAppearance.Large">
-            </TextView>
+                android:layout_height="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/serdce" />
+
+                <TextView
+                    android:id="@+id/likes"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/Black"
+                    android:textSize="25dp" />
+            </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/author"
-                android:background="@color/color1"
-                android:textAppearance="@android:style/TextAppearance.Large">
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/comments"
-                android:background="@color/color2"
-                android:textAppearance="@android:style/TextAppearance.Large">
-            </TextView>
-
-            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Напишите свой комментарий"
-                android:id="@+id/com">
+                android:textColor="@color/Black"
+                android:textSize="20dp"
+                android:text="Комментарии" />
+            <EditText
+                android:id="@+id/com"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Leave a comment"
+                android:textColorHint="@color/Black"
+                >
 
             </EditText>
             <Button
                 android:id="@+id/send_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/comment">
+                android:text="Send"
+                android:textColor="@color/Black"
+                android:textAllCaps="false">
 
             </Button>
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/close"
-                android:text="close">
+                android:text="Close"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             </Button>
 
         </LinearLayout>
 
+    </LinearLayout>
     </ScrollView>
-
-
-
-
 </LinearLayout>

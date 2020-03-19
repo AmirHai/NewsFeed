@@ -97,10 +97,9 @@ public class PostPage extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(!message.equals("")) {
-                    reference.child(opinion.size() + "").setValue(message);
+                    reference.push().setValue(message);
                     com.setText("");
                     Toast.makeText(getApplicationContext(), "Comment added", Toast.LENGTH_SHORT).show();
-
                 }else{
                     Toast.makeText(getApplicationContext(), "Comment can't be empty", Toast.LENGTH_SHORT).show();
                 }

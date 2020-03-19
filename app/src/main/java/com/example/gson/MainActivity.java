@@ -2,6 +2,8 @@ package com.example.gson;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,10 +28,23 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Post> list;
     ArrayList<String> names;
     MyAdapter adapter;
+    private static final int NOTIFY_ID = 101;
+    private static final String CHANNEL_ID = "New post";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setContentTitle("Напоминание")
+                        .setContentText("Появился новый пост")
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(MainActivity.this);
+        notificationManager.notify(NOTIFY_ID, builder.build());
 
         recyclerView = (RecyclerView) findViewById(R.id.myRecycler);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
@@ -48,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     names.add(name);
                     list.add(p);
                 }
-                Collections.reverse(list);
+                //Collections.reverse(list);
                 adapter = new MyAdapter(MainActivity.this,list, names);
                 recyclerView.setAdapter(adapter);
             }
