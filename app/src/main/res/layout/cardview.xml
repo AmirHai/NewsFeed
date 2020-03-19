@@ -6,11 +6,12 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:elevation="4dp"
-    app:cardCornerRadius="30dp"
+    app:cardCornerRadius="10dp"
+    app:contentPadding="5dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/pole"
         android:orientation="vertical"
@@ -24,7 +25,6 @@
             android:text="avtor"
             android:textColor="@color/Black"
             android:textSize="20dp" />
-
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -37,12 +37,14 @@
         <ImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="250dp"
+            android:background="@drawable/foto"
+            />
 
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="15dp"
             android:text="" />
 
         <LinearLayout
@@ -55,7 +57,7 @@
                 android:id="@+id/button2"
                 android:layout_width="50dp"
                 android:layout_height="42.5dp"
-                android:background="@drawable/serdco"
+                android:background="@drawable/serdce"
                 android:text="" />
 
             <TextView
@@ -68,8 +70,8 @@
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="50dp"
-                android:layout_height="42.5dp"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/comment"
                 android:text="" />
 
