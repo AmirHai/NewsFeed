@@ -26,6 +26,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
 
     DatabaseReference reference;
+    private long backPressedTime;
     RecyclerView recyclerView;
     ArrayList<Post> list;
     ArrayList<String> names;
@@ -78,5 +79,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime+2000>System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(getBaseContext(), "Нажмите ещё раз, чтобы выйти",Toast.LENGTH_SHORT).show();
+        }
+
+        backPressedTime = System.currentTimeMillis();
     }
 }
